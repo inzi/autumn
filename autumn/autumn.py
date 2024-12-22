@@ -294,6 +294,7 @@ def main():
             ],
             output_file=autumn_dir / "CODE_DOCUMENTATION.md",
             watch_path=watch_path,
+            split_by_extension=args.split,
         )
         return
 
@@ -305,19 +306,21 @@ def main():
         config = ProjectConfig.load_config(config_file)
         output_file = config.output_file  # Already resolved in AutumnConfig
         extensions = config.extensions
+        split_by_extension = config.split_by_extension
     else:
         # If no project config, use command line args or defaults
         output_file = AutumnConfig._resolve_output_path(
             args.output or "CODE_DOCUMENTATION.md", watch_path
         )
         extensions = parse_extensions(args.extensions) if args.extensions else None
+        split_by_extension = args.split
 
     # Initialize Autumn with configuration
     autumn = Autumn(
         watch_path=args.path,
         output_file=output_file,
         extensions=extensions,
-        split_by_extension=args.split,
+        split_by_extension=split_by_extension,
     )
 
     # Create initial documentation

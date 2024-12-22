@@ -9,6 +9,7 @@ class AutumnConfig:
     extensions: list[str]
     output_file: Path
     watch_path: Path
+    split_by_extension: bool = False
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any], base_path: Path) -> "AutumnConfig":
@@ -22,6 +23,7 @@ class AutumnConfig:
             extensions=data.get("extensions", []),
             output_file=output_file,
             watch_path=watch_path,
+            split_by_extension=data.get("split_by_extension", False),
         )
 
     @staticmethod
@@ -51,6 +53,7 @@ class AutumnConfig:
             "extensions": self.extensions,
             "output_file": str(self.output_file.relative_to(base_path)),
             "watch_path": str(self.watch_path.relative_to(base_path)),
+            "split_by_extension": self.split_by_extension,
         }
 
 
@@ -74,14 +77,17 @@ class ProjectConfig:
 
     @classmethod
     def save_config(
-        cls, path: Path, extensions: list[str], output_file: Path, watch_path: Path
+        cls, path: Path, extensions: list[str], output_file: Path, watch_path: Path, split_by_extension: bool = False
     ) -> None:
         """Save project configuration."""
         config_dir = path / cls.CONFIG_DIR
         config_dir.mkdir(exist_ok=True)
 
         config = AutumnConfig(
-            extensions=extensions, output_file=output_file, watch_path=watch_path
+            extensions=extensions, 
+            output_file=output_file, 
+            watch_path=watch_path,
+            split_by_extension=split_by_extension
         )
 
         with open(config_dir / cls.CONFIG_FILE, "w") as f:
@@ -97,7 +103,7 @@ class ProjectConfig:
 
     @classmethod
     def create_project(
-        cls, path: Path, extensions: list[str], output_file: Path, watch_path: Path
+        cls, path: Path, extensions: list[str], output_file: Path, watch_path: Path, split_by_extension: bool = False
     ) -> None:
         """Create a new Autumn project configuration."""
         # Ensure all paths are absolute before saving
@@ -106,6 +112,6 @@ class ProjectConfig:
         abs_watch = watch_path.absolute()
 
         # Save the configuration
-        cls.save_config(abs_path, extensions, abs_output, abs_watch)
+        cls.save_config(abs_path, extensions, abs_output, abs_watch, split_by_extension)
 
         print(f"Created Autumn project configuration in {abs_path / cls.CONFIG_DIR}")
