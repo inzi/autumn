@@ -36,3 +36,6 @@ strict = true
 
 [tool.pylint]
 max-line-length = 88
+
+[tool.hatch.build.targets.wheel]
+packages = ["autumn"]
