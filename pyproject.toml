@@ -1,0 +1,38 @@
+[project]
+name = "autumn-ai"
+version = "0.1.0"
+description = "Autumn maintains a markdown file of your project's source code for AI context"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+    "watchdog>=3.0.0",
+    "PyYAML>=6.0.1",
+    "pathspec>=0.12.1",
+]
+keywords = ["ai", "context", "source-code", "markdown", "watcher"]
+authors = [
+    {name = "Chris Norman", email = "projects@inzi.com"}
+]
+
+[project.urls]
+Homepage = "https://github.com/inzi/autumn"
+Repository = "https://github.com/inzi/autumn.git"
+
+[project.scripts]
+autumn = "autumn:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[tool.pylint]
+max-line-length = 88
