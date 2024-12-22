@@ -6,7 +6,7 @@ Maintains an up-to-date markdown file of your project's source code.
 from pathlib import Path
 from typing import List, Optional
 
-from .autumn import Autumn, main, parse_extensions
+from .autumn import Autumn, main, parse_extensions, AutumnEventHandler
 from .project_config import ProjectConfig, AutumnConfig
 
 __version__ = "0.1.0"
@@ -47,9 +47,8 @@ def run(
     
     # Set up file watching
     from watchdog.observers import Observer
-    from watchdog.events import FileSystemEventHandler
     
-    event_handler = autumn.AutumnEventHandler(autumn)
+    event_handler = AutumnEventHandler(autumn)
     observer = Observer()
     observer.schedule(event_handler, str(autumn.watch_path), recursive=True)
     observer.start()
