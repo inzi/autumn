@@ -17,7 +17,7 @@ Autumn watches your codebase and maintains an up-to-date markdown file containin
 Requires Python 3.11 or higher.
 
 ```bash
-pip install autumn-ai
+pip install autumn
 ```
 
 ## Usage

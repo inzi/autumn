@@ -1,5 +1,5 @@
 [project]
-name = "autumn-ai"
+name = "autumn"
 version = "0.1.0"
 description = "Autumn maintains a markdown file of your project's source code for AI context"
 readme = "README.md"
