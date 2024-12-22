@@ -12,7 +12,7 @@ import yaml
 from datetime import datetime
 import pathspec
 from typing import Set, List, Optional
-from project_config import ProjectConfig, AutumnConfig
+from .project_config import ProjectConfig, AutumnConfig
 
 
 def parse_extensions(ext_string: str) -> List[str]:
