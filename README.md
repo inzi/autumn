@@ -146,7 +146,7 @@ export function Button({ label }: { label: string }) {
     return <button>{label}</button>;
 }
 ```
-```
+
 
 When using the `--split` option, Autumn creates separate files for each extension (e.g., `CODE_DOCUMENTATION_py.md`, `CODE_DOCUMENTATION_ts.md`).
 
@@ -170,10 +170,11 @@ test/
 **/*.test.ts
 **/*.spec.py
 
-# Ignore documentation
+# Ignore a documentation folder
 docs/
 ```
 
+### Note:
 By default, Autumn also ignores:
 - `.git/`
 - `__pycache__/`
